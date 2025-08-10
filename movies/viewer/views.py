@@ -1,11 +1,23 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import TemplateView, ListView
+from viewer.models import Movie, Genre
 
-# http://127.0.0.1:8000/hello/Florin
-def hello_view1(request, name):
-    return HttpResponse(f"Hello {name}!!")
+# Functional View
+def home_page(request):
+    movies = Movie.objects.all()
+    return render(
+        request, 
+        template_name="home_page.html", 
+        context={"movies": movies}
+    )
 
-# http://127.0.0.1:8000/hello/?name=Florin
-def hello_view2(request):
-    name = request.GET.get('name')
-    return HttpResponse(f"Hello {name}!!")
+# CBV (Class-Based Views)
+class HomePage(TemplateView):
+    template_name = "home_page.html"
+    movies = Movie.objects.all()
+    extra_context = {"movies": movies}
+
+
+class HomePageListView(ListView):
+    template_name = "home_page.html"
+    model = Movie

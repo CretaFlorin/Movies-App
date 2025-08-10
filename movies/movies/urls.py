@@ -1,12 +1,16 @@
 from django.contrib import admin
 from django.urls import path
 
-from viewer.views import hello_view1, hello_view2
+from viewer.views import home_page, HomePage, HomePageListView
+from viewer.models import Genre, Movie
+
+admin.site.register(Genre)
+admin.site.register(Movie)
 
 urlpatterns = [
-    # Regex
-    path('hello/<name>', hello_view1),
-
-    # Query params
-    path('hello/', hello_view2),
+    path("admin/", admin.site.urls),
+    #
+    # path("", home_page),
+    # path("", HomePage.as_view()),
+    path("", HomePageListView.as_view()),
 ]
