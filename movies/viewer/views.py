@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, FormView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
 
 from viewer.models import Movie, Genre
 from viewer.forms.movie_form import MovieForm
+
+
 
 # Functional View
 def home_page(request):
@@ -44,4 +50,15 @@ class MovieDeleteView(DeleteView):
     model = Movie
     success_url = reverse_lazy("home")
 
+# Auth
+class CustomLoginView(LoginView):
+    template_name = "form.html"
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+class CustomRegisterView(CreateView):
+    template_name = 'form.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")

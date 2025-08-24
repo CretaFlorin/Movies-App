@@ -40,3 +40,27 @@
     display: flex;
     justify-content: space-between;
 }
+
+.add-movie {
+    width: 80px;
+    height: 30px;
+    background-color: rgb(68, 161, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.add-movie:hover {
+    background-color: rgb(61, 133, 205);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.trash:hover {
+    fill: rgb(255, 52, 52);
+}

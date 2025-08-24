@@ -23,7 +23,7 @@ body {
     cursor: pointer;
 }
 
-.navbar span:last-child {
+.login {
     width: 40px;
     height: 40px;
     border-radius: 50%;
